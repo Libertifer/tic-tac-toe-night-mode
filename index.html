@@ -1,0 +1,158 @@
+<!--
+Spaghetti by Libertifer
+Made some tic-tac-toe cause I'm so smart.
+Made it night mode for more elegance.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background-color: #222;
+        }
+        table {
+            margin: 0 auto;
+        }
+        td {
+            font-size: 64px;
+            font-family: monospace;
+            border: solid 1px #DDD;
+            color: #DDD;
+            padding: 1px 18px;
+        }
+        td:not(.x,.o) {
+            cursor: pointer;
+        }
+        #victory {
+            color: #DDD;
+            text-align: center;
+            font-size: 32px;
+            font-family: sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <tr>
+            <td id="c11" onclick="mark(this)">&nbsp;</td>
+            <td id="c12" onclick="mark(this)">&nbsp;</td>
+            <td id="c13" onclick="mark(this)">&nbsp;</td>
+        </tr>
+        <tr>
+            <td id="c21" onclick="mark(this)">&nbsp;</td>
+            <td id="c22" onclick="mark(this)">&nbsp;</td>
+            <td id="c23" onclick="mark(this)">&nbsp;</td>
+        </tr>
+        <tr>
+            <td id="c31" onclick="mark(this)">&nbsp;</td>
+            <td id="c32" onclick="mark(this)">&nbsp;</td>
+            <td id="c33" onclick="mark(this)">&nbsp;</td>
+        </tr>
+        <tr>
+            <th id="victory" colspan="3"></th>
+        </tr>
+    </table>
+    <script>
+        var turn = 0;
+        var end = false;
+        function mark(src) {
+            if (!end) {
+                if (src.innerHTML == "&nbsp;") {
+                    switch (turn) {
+                        case 0:
+                            src.innerHTML = "O";
+                            src.classList.add("o");
+                            turn = 1;
+                            break;
+                        case 1:
+                            src.innerHTML = "X";
+                            src.classList.add("x");
+                            turn = 0;
+                            break;
+                    }
+                }
+            }
+            check();
+        }
+        function check() {
+            if (document.querySelector('#c11').innerHTML != "&nbsp;" && document.querySelector('#c11').classList[0] == document.querySelector('#c12').classList[0] && document.querySelector('#c12').classList[0] == document.querySelector('#c13').classList[0]) {
+                document.querySelector('#c11').style.backgroundColor = "#e6c300";
+                document.querySelector('#c11').style.color = "#222";
+                document.querySelector('#c12').style.backgroundColor = "#e6c300";
+                document.querySelector('#c12').style.color = "#222";
+                document.querySelector('#c13').style.backgroundColor = "#e6c300";
+                document.querySelector('#c13').style.color = "#222";
+                document.querySelector('#victory').innerHTML = "WINNER: "+document.querySelector('#c11').innerHTML;
+                end = true;
+            } else if (document.querySelector('#c21').innerHTML != "&nbsp;" && document.querySelector('#c21').classList[0] == document.querySelector('#c22').classList[0] && document.querySelector('#c22').classList[0] == document.querySelector('#c23').classList[0]) {
+                document.querySelector('#c21').style.backgroundColor = "#e6c300";
+                document.querySelector('#c21').style.color = "#222";
+                document.querySelector('#c22').style.backgroundColor = "#e6c300";
+                document.querySelector('#c22').style.color = "#222";
+                document.querySelector('#c23').style.backgroundColor = "#e6c300";
+                document.querySelector('#c23').style.color = "#222";
+                document.querySelector('#victory').innerHTML = "WINNER: "+document.querySelector('#c21').innerHTML;
+                end = true;
+            } else if (document.querySelector('#c31').innerHTML != "&nbsp;" && document.querySelector('#c31').classList[0] == document.querySelector('#c32').classList[0] && document.querySelector('#c32').classList[0] == document.querySelector('#c33').classList[0]) {
+                document.querySelector('#c31').style.backgroundColor = "#e6c300";
+                document.querySelector('#c31').style.color = "#222";
+                document.querySelector('#c32').style.backgroundColor = "#e6c300";
+                document.querySelector('#c32').style.color = "#222";
+                document.querySelector('#c33').style.backgroundColor = "#e6c300";
+                document.querySelector('#c33').style.color = "#222";
+                document.querySelector('#victory').innerHTML = "WINNER: "+document.querySelector('#c31').innerHTML;
+                end = true;
+            } else if (document.querySelector('#c11').innerHTML != "&nbsp;" && document.querySelector('#c11').classList[0] == document.querySelector('#c21').classList[0] && document.querySelector('#c21').classList[0] == document.querySelector('#c31').classList[0]) {
+                document.querySelector('#c11').style.backgroundColor = "#e6c300";
+                document.querySelector('#c11').style.color = "#222";
+                document.querySelector('#c21').style.backgroundColor = "#e6c300";
+                document.querySelector('#c21').style.color = "#222";
+                document.querySelector('#c31').style.backgroundColor = "#e6c300";
+                document.querySelector('#c31').style.color = "#222";
+                document.querySelector('#victory').innerHTML = "WINNER: "+document.querySelector('#c11').innerHTML;
+                end = true;
+            } else if (document.querySelector('#c12').innerHTML != "&nbsp;" && document.querySelector('#c12').classList[0] == document.querySelector('#c22').classList[0] && document.querySelector('#c22').classList[0] == document.querySelector('#c32').classList[0]) {
+                document.querySelector('#c12').style.backgroundColor = "#e6c300";
+                document.querySelector('#c12').style.color = "#222";
+                document.querySelector('#c22').style.backgroundColor = "#e6c300";
+                document.querySelector('#c22').style.color = "#222";
+                document.querySelector('#c32').style.backgroundColor = "#e6c300";
+                document.querySelector('#c32').style.color = "#222";
+                document.querySelector('#victory').innerHTML = "WINNER: "+document.querySelector('#c12').innerHTML;
+                end = true;
+            } else if (document.querySelector('#c13').innerHTML != "&nbsp;" && document.querySelector('#c13').classList[0] == document.querySelector('#c23').classList[0] && document.querySelector('#c23').classList[0] == document.querySelector('#c33').classList[0]) {
+                document.querySelector('#c13').style.backgroundColor = "#e6c300";
+                document.querySelector('#c13').style.color = "#222";
+                document.querySelector('#c23').style.backgroundColor = "#e6c300";
+                document.querySelector('#c23').style.color = "#222";
+                document.querySelector('#c33').style.backgroundColor = "#e6c300";
+                document.querySelector('#c33').style.color = "#222";
+                document.querySelector('#victory').innerHTML = "WINNER: "+document.querySelector('#c13').innerHTML;
+                end = true;
+            } else if (document.querySelector('#c11').innerHTML != "&nbsp;" && document.querySelector('#c11').classList[0] == document.querySelector('#c22').classList[0] && document.querySelector('#c22').classList[0] == document.querySelector('#c33').classList[0]) {
+                document.querySelector('#c11').style.backgroundColor = "#e6c300";
+                document.querySelector('#c11').style.color = "#222";
+                document.querySelector('#c22').style.backgroundColor = "#e6c300";
+                document.querySelector('#c22').style.color = "#222";
+                document.querySelector('#c33').style.backgroundColor = "#e6c300";
+                document.querySelector('#c33').style.color = "#222";
+                document.querySelector('#victory').innerHTML = "WINNER: "+document.querySelector('#c11').innerHTML;
+                end = true;
+            } else if (document.querySelector('#c13').innerHTML != "&nbsp;" && document.querySelector('#c13').classList[0] == document.querySelector('#c22').classList[0] && document.querySelector('#c22').classList[0] == document.querySelector('#c31').classList[0]) {
+                document.querySelector('#c13').style.backgroundColor = "#e6c300";
+                document.querySelector('#c13').style.color = "#222";
+                document.querySelector('#c22').style.backgroundColor = "#e6c300";
+                document.querySelector('#c22').style.color = "#222";
+                document.querySelector('#c31').style.backgroundColor = "#e6c300";
+                document.querySelector('#c31').style.color = "#222";
+                document.querySelector('#victory').innerHTML = "WINNER: "+document.querySelector('#c13').innerHTML;
+                end = true;
+            } 
+        }
+    </script>
+</body>
